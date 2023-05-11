@@ -1,0 +1,13 @@
+[parent]
+node-ubuntu
+node-ubuntu-2
+node-ubuntu-3
+node-centos
+
+[webservers]
+node-ubuntu
+node-ubuntu-2
+node-ubuntu-3
+
+[centos]
+node-centos

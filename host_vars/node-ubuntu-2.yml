@@ -1,0 +1,5 @@
+ansible_host: 44.202.111.114
+user: ubuntu
+apache: apache2 
+php: libapache2-mod-php
+sudo_group: sudo

@@ -1,0 +1,55 @@
+---
+- name: update and install php
+  hosts: parent
+  pre_tasks:
+  
+  - name: install updates
+    package:
+      update_cache: yes
+      state: latest
+
+  - name: install php
+    package:
+      name: "{{ php }}"
+      state: latest
+
+
+- name: Write a playbook to install apache on the centos machine using the group
+  hosts: centos
+  tasks:
+
+  - name: install apache
+    tags: install_apache_centos
+    package:
+      name: "{{ apache }}"
+      state: latest
+
+  - name: start apache
+    tags: start_apache
+    service:
+      name: "{{ apache }}"
+      state: started
+      enabled: yes
+
+
+- name: install nginx on the ubuntu group
+  hosts: webservers
+  tasks:
+
+  - name: install nginx
+    tags: install_nginx_ubuntu
+    package:
+      name: nginx
+      state: present
+
+  - name: stop apache
+    tags: stop_apache_ubuntu
+    service:
+      name: "{{ apache }}"
+      state: stopped
+
+  - name: start nginx
+    tags: start_nginx_ubuntu
+    service:
+      name: nginx
+      state: started
