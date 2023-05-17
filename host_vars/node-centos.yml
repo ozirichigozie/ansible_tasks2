@@ -1,5 +1,0 @@
-ansible_host: 54.208.208.159
-user: ec2-user
-apache: httpd
-php: php
-sudo_group: wheel

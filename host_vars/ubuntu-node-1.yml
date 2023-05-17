@@ -1,0 +1,4 @@
+ansible_host: 192.168.53.21
+apache: apache2
+php: libapache2-mod-php
+sudo_group: sudo

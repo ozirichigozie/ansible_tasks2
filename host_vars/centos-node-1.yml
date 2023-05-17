@@ -1,0 +1,4 @@
+ansible_host: 192.168.53.61
+apache: httpd
+php: php
+sudo_group: wheel
