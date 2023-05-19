@@ -1,34 +1,30 @@
 ---
-- name: Update and Install PHP
+- name: update and install php
   hosts: parent
-
   pre_tasks:
   
-  - name: Updating servers
-    tags: always
+  - name: install updates
     package:
       update_cache: yes
       state: latest
 
-  - name: Installing PHP
-    tags: install_php
+  - name: install php
     package:
       name: "{{ php }}"
       state: latest
 
 
-- name: Install and Start Apache on CentOS servers
+- name: install apache on the centos servers
   hosts: centos
-
   tasks:
 
-  - name: Installing Apache
+  - name: install apache
     tags: install_apache_centos
     package:
       name: "{{ apache }}"
       state: latest
 
-  - name: Starting Apache
+  - name: start apache
     tags: start_apache
     service:
       name: "{{ apache }}"
@@ -36,19 +32,24 @@
       enabled: yes
 
 
-- name: Install and Start NGINX on Webservers
+- name: install nginx on the ubuntu servers
   hosts: webservers
-
   tasks:
 
-  - name: Installing NGINX
-    tags: install_nginx
+  - name: install nginx
+    tags: install_nginx_ubuntu
     package:
       name: nginx
       state: present
 
-  - name: Start NGINX
-    tags: start_nginx
+  - name: stop apache
+    tags: stop_apache_ubuntu
+    service:
+      name: "{{ apache }}"
+      state: stopped
+
+  - name: start nginx
+    tags: start_nginx_ubuntu
     service:
       name: nginx
       state: started
